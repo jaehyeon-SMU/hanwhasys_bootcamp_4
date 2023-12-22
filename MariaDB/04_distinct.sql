@@ -29,7 +29,8 @@ SELECT
 SELECT
 		 DISTINCT ref_category_code
 	FROM tbl_category
-  ORDER BY 1 DESC;
+--  WHERE ref_category_code IS NOT null 
+  ORDER BY ref_category_code DESC;
   
 SELECT
 		 DISTINCT ref_category_code AS 'rcc'
