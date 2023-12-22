@@ -36,3 +36,17 @@ SELECT
 		 DISTINCT ref_category_code AS 'rcc'
 	FROM tbl_category
   ORDER BY -rcc DESC;
+
+--  기본 정렬의 개념(순번이나 별칭을 사용하지 않고는 정렬할 수 없다.)
+SELECT
+		 DISTINCT ref_category_code
+	FROM tbl_category
+  ORDER BY DISTINCT ref_category_code DESC; --에러 발생
+
+-- ------------------------------------------------------------------
+-- 컬럼 2개 이상도 distinct로 묶을 수는 있지만 좋은 형태은 아니다.
+--  컬럼 2개 이상부터는 이후 배울 group by절을 통해 중복 제거를 하자.
+SELECT 
+		 DISTINCT category_code, orderable_status -- 둘다 같을 때만 하나로 친다.
+	FROM tbl_menu;
+	
