@@ -44,3 +44,68 @@ SELECT
 	FROM nephew
   WHERE age >= 7
  	 AND height >= 100;
+ 	 
+-- --------------------------------------------------------------------------------------------------------
+-- where 절에서 and 와 or 을 통한 결과 비교
+SELECT 
+		  menu_code
+		, menu_name
+		, menu_price
+		, category_code
+		, orderable_status
+	FROM tbl_menu
+  WHERE menu_price > 5000
+    AND category_code = 10; 
+     
+SELECT 
+		  menu_code
+		, menu_name
+		, menu_price
+		, category_code
+		, orderable_status
+	FROM tbl_menu
+  WHERE menu_price > 5000
+     OR category_code = 10;
+-- --------------------------------------
+-- between 연산자 활용하기
+-- between 연산자는 초과, 미만은 불가능
+SELECT
+		  menu_name
+		, menu_price
+		, category_code 
+	FROM tbl_menu
+  WHERE menu_price >= 10000
+    AND menu_price <= 25000
+  ORDER BY menu_price;
+  
+SELECT
+		  menu_name
+		, menu_price
+		, category_code 
+	FROM tbl_menu
+  WHERE menu_price BETWEEN 10000 AND 25000
+  ORDER BY menu_price;  
+  
+-- 반대의 범위로 테스트
+SELECT
+		  menu_name
+		, menu_price
+		, category_code 
+	FROM tbl_menu
+  WHERE menu_price NOT BETWEEN 10000 AND 25000
+  ORDER BY menu_price;
+  
+SELECT
+		*
+	FROM tbl_menu
+  WHERE menu_price > 10000 
+     OR menu_price < 25000
+  ORDER BY menu_price;
+  
+--  ---------------------------------------------------
+-- 메뉴중에 '밥'이 들어간 메뉴 조회
+
+SELECT 
+		*
+	FROM tbl_menu       
+  where menu_name LIKE '%밥%'; 
