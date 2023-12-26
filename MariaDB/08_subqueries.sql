@@ -38,7 +38,7 @@ SELECT
 		, a.category_code
 		, a.orderable_status
 	FROM tbl_menu a
-  WHERE a.menu_price > (SELECT AVG(menu_price)
+  WHERE a.menu_price >(SELECT AVG(menu_price)
   								FROM tbl_menu b
 							  WHERE b.category_code = a.category_code);
 	
@@ -66,9 +66,9 @@ SELECT
 -- --------------------------------------------------------------------
 -- 4번 카테고리를 메인 쿼리에서 where조건 판별 중 동작하는 서브쿼리
 SELECT
-       1
+       menu_name
   FROM tbl_menu b
- WHERE b.category_code = 7;
+ WHERE b.category_code = 8;
 
 
 -- ----------------------------------------------------------------------
@@ -88,7 +88,7 @@ SELECT
 	FROM employee;
 	
 SELECT
-       *
+       emp_name
   FROM employee
  WHERE salary = (SELECT MAX(salary)
                    FROM employee);
@@ -105,17 +105,21 @@ SELECT max(a.sal_avg) AS max_avg
           FROM employee
          GROUP BY dept_code) a;  -- 별칭 a , 단일행다중열 서브쿼리
 
+
+
 DESC employee;
 DESC department;
        
 SELECT
-       dept_code
-  FROM employee
+       a.dept_code
+      ,b.dept_title
+  FROM employee a
+  JOIN department b ON(a.dept_code = b.dept_id) 
  GROUP BY dept_code
-HAVING AVG(salary) = (SELECT max(a.sal_avg)
+HAVING AVG(salary) = (SELECT max(c.sal_avg)
                         FROM (SELECT AVG(salary) sal_avg
                                 FROM employee
-                               GROUP BY dept_code) a);
+                               GROUP BY dept_code) c);
 -- ii) >= ALL을 활용한 방법
 -- 서브쿼리 중에 다중행 서브쿼리인 경우에는 비교 연산자가 일반 비교연산자와 달라진다.
 -- > ALL, < ALL, > ANY, < ANY, IN
