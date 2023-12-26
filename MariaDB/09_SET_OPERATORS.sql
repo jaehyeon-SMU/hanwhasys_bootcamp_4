@@ -60,7 +60,7 @@ SELECT
      , a.menu_price
      , a.category_code
      , a.orderable_status
-     , b.*
+     -- , b.*
   FROM tbl_menu a
   LEFT JOIN (SELECT menu_code
                   , menu_name
