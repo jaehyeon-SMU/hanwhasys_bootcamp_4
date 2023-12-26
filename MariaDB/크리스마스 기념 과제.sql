@@ -249,6 +249,7 @@ SELECT
 		, a.SALARY
 	FROM employee a
 	JOIN job b ON (a.JOB_CODE = b.JOB_CODE)
+	-- left join 을 통해 직급이 없는 사원도 테이블에 뜰수 있도록 할 수 있다.
 	JOIN department c ON (a.DEPT_CODE = c.DEPT_ID)
 	JOIN location d ON (c.LOCATION_ID = d.LOCAL_CODE)
   WHERE b.JOB_NAME = '대리' AND d.LOCAL_NAME IN ('ASIA1','ASIA2','ASIA3');
