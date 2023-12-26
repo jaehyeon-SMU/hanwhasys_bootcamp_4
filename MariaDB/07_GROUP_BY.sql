@@ -1,8 +1,14 @@
 SELECT
 		  category_code
+		, menu_name
 	FROM tbl_menu
   WHERE category_code IS NOT null 
-  GROUP BY category_code;
+  GROUP BY category_code, menu_name;
+  
+SELECT
+		 distinct category_code, menu_name
+	FROM tbl_menu;
+		 
   
   SELECT
 		  category_code		-- 그룹을 묶은 컬럼을 제외한,그룹 함수만 가능
@@ -11,8 +17,8 @@ SELECT
 		, SUM(menu_price)
 		, AVG(menu_price)
 	FROM tbl_menu
-  WHERE category_code IS NOT null 
-  GROUP BY category_code;		-- GROUP BY 한 컬럼제외 다른 컬럼이 들어가면 안된다.
+  WHERE category_code IS NOT NULL
+   GROUP BY category_code;		-- GROUP BY 한 컬럼제외 다른 컬럼이 들어가면 안된다.
   
   
 	SELECT									-- 4
@@ -23,7 +29,7 @@ SELECT
 	FROM tbl_menu							-- 1
   WHERE category_code IS NOT NULL 	-- 2
   GROUP BY category_code				-- 3
-  ORDER BY 2;								-- 5
+  ORDER BY 1;								-- 5
   
 
 -- 조회의 6가지 절을 모두 활용한 예제
