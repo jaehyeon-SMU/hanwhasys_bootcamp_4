@@ -70,4 +70,70 @@ SELECT
 -- 그룹 함수: COUNT, SUM, AVG와 같이 그룹마다 적용되어 그룹의 갯수만큼 결과가 나오는 경우 
 -- 				(단, GROUP BY절이 없는 조회는 그룹 함수의 결과가 단일행이다.)
 
+--  ------------------------------------------------------------
+-- ROLL UP
+-- 중간 합계 및 최종 합계를 도출
+-- GROUP BY 에서 두 개 이상의 컬럼으로 그룹 형성 
+
+-- 앞의 컬럼을 기준으로 중간 합계가 나오게 된다.
+SELECT
+		  menu_price
+		, category_code
+		, SUM(menu_price)
+	FROM tbl_menu
+  GROUP BY menu_price, category_code
+  WITH ROLLUP;
+  
+CREATE TABLE sales (
+    code INT AUTO_INCREMENT,
+    YEAR VARCHAR(4),
+    MONTH VARCHAR(2),
+    product VARCHAR(50),
+    amount DECIMAL(10,2),
+    PRIMARY KEY(CODE)
+);
+
+INSERT 
+  INTO sales
+(
+  code,YEAR,MONTH
+, product,amount
+)
+ VALUES
+(
+  null, '2023', LPAD('1', 2, '0'),
+  'Product A', 1000.00
+),
+(
+  null, '2023', LPAD('1', 2, '0'),
+  'Product B', 1500.00
+),
+(
+  null, '2023', LPAD('2', 2, '0'), --LPAD('2',2,'0') >> 02
+  'Product A', 2000.00
+),
+(
+  null, '2023', LPAD('2', 2, '0'),
+  'Product B', 2500.00
+),
+(
+  null, '2023', LPAD('3', 2, '0'),
+  'Product A', 1200.00
+),
+(
+  null, '2024', LPAD('3', 2, '0'),
+  'Product B', 1700.00
+);
+
+-- 연, 월, 상품명을 모두 하나의 그룹으로 묶어
+-- 연, 월 중간 합계 및 전체 합계를 ROLLUP으로 구해 보자
+SELECT
+       year
+	   , month
+	   , product
+	   , SUM(amount) AS total_sales
+  FROM sales
+ GROUP BY year, month, product WITH ROLLUP; -- year,month,product가 
+ 														  -- 다 같아야 하나의 그룹
+ 
 
