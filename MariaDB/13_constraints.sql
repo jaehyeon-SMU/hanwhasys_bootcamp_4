@@ -81,7 +81,7 @@ VALUES
 (1, 'user01', 'pass01', '홍길동', '남', '010-1234-5678', 'hong123@gmail.com'),
 (2, 'user02', 'pass02', '유관순', '여', '010-777-7777', 'yu77@gmail.com');
 
--- USER_no에 null갑서 적용(에러 발생)
+-- USER_no에 null값을  적용(에러 발생)
 INSERT 
   INTO user_primarykey
 (user_no, user_id, user_pwd, user_name, gender, phone, email)
@@ -191,7 +191,7 @@ VALUES (40, '에메랄드 회원');
 
 -- null 값으로 변화된 자식 테이블의 행들을 새로 추가한 회원 등급으로 업데이트
 UPDATE user_foreignkey2
-	SET grade_code = 50
+	SET grade_code = 40
  WHERE grade_code IS NULL;
 
 -- 확인
