@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS tb1 (  -- 에러를 피할 수 있다. IF NOT EXISTS는 옵션.
+CREATE TABLE IF NOT EXISTS tb1 (  -- 중복 방지 에러를 피할 수 있다. IF NOT EXISTS는 옵션.
     pk INT PRIMARY KEY,				 -- 컬럼 레벨에서 제약조건 추가(PRIMARY KEY >> unique, not null)
     fk INT,								 -- pk, fk, col1은 컬럼명이다.
     col1 VARCHAR(255),				 -- 들어간 데이터에 맞춰서 용량을 줄인다.(가변) - Varchar을 쓰는 이유
@@ -20,7 +20,7 @@ VALUES
 
 -- ----------------------------------------------------------
 CREATE TABLE IF NOT EXISTS tb2 (  
-    pk INT PRIMARY KEY AUTO_INCREMENT ,				 
+    pk INT PRIMARY KEY AUTO_INCREMENT ,	-- 무결성을 위해			 
     fk INT,								 
     col1 VARCHAR(255),				 
     CHECK(col1 IN ('Y', 'N'))		
