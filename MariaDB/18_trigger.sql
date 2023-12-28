@@ -93,7 +93,7 @@ CREATE TABLE PRODUCT(           -- 이력 테이블(UPDATE가 발생하는 테�
   PNAME VARCHAR(30),
   BRAND VARCHAR(30),
   PRICE INT,
-  STOCK INT DEFAULT 0,
+  STOCK INT DEFAULT 0,    -- 음수를 찍지 않도록 디폴트 값
   CHECK(STOCK >= 0)
 );
 
@@ -191,5 +191,8 @@ BEGIN
 END;
 //
 DELIMITER ;
+
+DROP TRIGGER after_order_menu_insert;
+SHOW TRIGGERS;
 -- -------------------------------------------------------------
 
