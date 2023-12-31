@@ -1,5 +1,5 @@
 -- 명시적 형변환
-SELECT AVG(menu_price) FROM tbl_menu; --그룹을 묶지않으면 모두를 하나로 본다.
+SELECT AVG(menu_price) FROM tbl_menu; -- 그룹을 묶지않으면 모두를 하나로 본다.
 
 -- 1) 숫자 - > 숫자
 --  소수점에서 반올림해 정수까지 변환
@@ -9,7 +9,7 @@ SELECT CAST(AVG(menu_price) AS UNSIGNED INTEGER) AS '가격평균' FROM tbl_menu
 select CAST(AVG(menu_price) AS FLOAT) AS '가격평균' FROM tbl_menu; -- 소수점 이하 한자리까지 출력
 
 -- 소수점 이하 12자리까지 변환
-SELECT CAST(AVG(menu_price) AS double AS '가격평균' FROM tbl_menu;
+SELECT CAST(AVG(menu_price) AS DOUBLE) AS '가격평균' FROM tbl_menu;
 
 -- 2) 문자 ->  날짜
 --2023년 12월 27일을 DATE형으로   변환
